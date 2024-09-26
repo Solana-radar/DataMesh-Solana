@@ -2,9 +2,18 @@
 import type { Config } from "tailwindcss";
 import sharedConfig from "@repo/tailwind-config";
 
-const config: Pick<Config, "content" | "presets"|"plugins"> = {
+const config: Pick<Config, "content" | "presets" | "plugins"> = {
   content: ["./src/app/**/*.tsx"],
   presets: [sharedConfig],
+  plugins: [
+    function ({ addUtilities }) {
+      addUtilities({
+        ".scroll-enabled": {
+          overflow: "auto !important", // Force scroll when this class is applied
+        },
+      });
+    },
+  ],
 };
 
 export default config;
