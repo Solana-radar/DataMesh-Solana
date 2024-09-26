@@ -17,7 +17,7 @@ const WalletConnectionButton = () => {
   const conneciton = useConnection();
 
   return (
-    <div>
+    <>
       <walletAdapterReact.ConnectionProvider endpoint={'https://solana-devnet.g.alchemy.com/v2/J0Wh8WUuG5Cm0yeMfDNAqv3xoERG6OQK'}>
         <walletAdapterReact.WalletProvider wallets={wallets} autoConnect>
           <WalletModalProvider>
@@ -26,7 +26,7 @@ const WalletConnectionButton = () => {
           </WalletModalProvider>
         </walletAdapterReact.WalletProvider>
       </walletAdapterReact.ConnectionProvider>
-    </div>
+    </>
   );
 };
 
