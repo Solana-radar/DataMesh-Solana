@@ -30,15 +30,7 @@ const WalletConnectionButton = () => {
   }, []);
 
   return (
-    <walletAdapterReact.ConnectionProvider
-      endpoint="https://solana-devnet.g.alchemy.com/v2/J0Wh8WUuG5Cm0yeMfDNAqv3xoERG6OQK"
-    >
-      <walletAdapterReact.WalletProvider wallets={wallets} autoConnect>
-        <WalletModalProvider>
-          <WalletMultiButton className="!bg-helius-orange !rounded-xl hover:!bg-[#161b19] transition-all duration-200" />
-        </WalletModalProvider>
-      </walletAdapterReact.WalletProvider>
-    </walletAdapterReact.ConnectionProvider>
+    <WalletMultiButton  />
   );
 };
 
