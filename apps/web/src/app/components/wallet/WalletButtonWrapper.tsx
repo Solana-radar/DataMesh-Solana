@@ -29,16 +29,26 @@ const WalletConnectionButton = () => {
     };
   }, []);
 
+  useEffect(() => {
+    const handleBodyScroll = () => {
+      const modalOpen = document.querySelector(".wallet-adapter-modal-wrapper");
+      if (modalOpen) {
+        document.body.classList.add("scroll-enabled"); // Apply custom scroll class
+      } else {
+        document.body.classList.remove("scroll-enabled"); // Remove scroll class when modal closes
+      }
+    };
+
+    const observer = new MutationObserver(handleBodyScroll);
+    observer.observe(document.body, { childList: true, subtree: true });
+
+    return () => {
+      observer.disconnect();
+    };
+  }, []);
+
   return (
-    <walletAdapterReact.ConnectionProvider
-      endpoint="https://solana-devnet.g.alchemy.com/v2/J0Wh8WUuG5Cm0yeMfDNAqv3xoERG6OQK"
-    >
-      <walletAdapterReact.WalletProvider wallets={wallets} autoConnect>
-        <WalletModalProvider>
-          <WalletMultiButton className="!bg-helius-orange !rounded-xl hover:!bg-[#161b19] transition-all duration-200" />
-        </WalletModalProvider>
-      </walletAdapterReact.WalletProvider>
-    </walletAdapterReact.ConnectionProvider>
+    <WalletMultiButton  />
   );
 };
 
