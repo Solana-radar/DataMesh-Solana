@@ -29,6 +29,24 @@ const WalletConnectionButton = () => {
     };
   }, []);
 
+  useEffect(() => {
+    const handleBodyScroll = () => {
+      const modalOpen = document.querySelector(".wallet-adapter-modal-wrapper");
+      if (modalOpen) {
+        document.body.classList.add("scroll-enabled"); // Apply custom scroll class
+      } else {
+        document.body.classList.remove("scroll-enabled"); // Remove scroll class when modal closes
+      }
+    };
+
+    const observer = new MutationObserver(handleBodyScroll);
+    observer.observe(document.body, { childList: true, subtree: true });
+
+    return () => {
+      observer.disconnect();
+    };
+  }, []);
+
   return (
     <WalletMultiButton  />
   );
