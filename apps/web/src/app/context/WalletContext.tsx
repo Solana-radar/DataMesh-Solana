@@ -1,7 +1,5 @@
-'use client';
-import "./globals.css";
-import "@repo/ui/styles.css";
-import { ReactNode, useMemo } from 'react';
+import type { AppProps } from 'next/app';
+import { useMemo } from 'react';
 import { ConnectionProvider, WalletProvider } from '@solana/wallet-adapter-react';
 import { WalletAdapterNetwork } from '@solana/wallet-adapter-base';
 import {
@@ -14,7 +12,7 @@ import { clusterApiUrl } from '@solana/web3.js';
 // Import wallet adapter CSS
 import '@solana/wallet-adapter-react-ui/styles.css';
 
-export default function RootLayout({ children }: { children: ReactNode }) {
+function WalletContextProvider({ Component, pageProps }: AppProps) {
     const network = WalletAdapterNetwork.Devnet;
     const endpoint = useMemo(() => clusterApiUrl(network), [network]);
 
@@ -27,16 +25,14 @@ export default function RootLayout({ children }: { children: ReactNode }) {
     );
 
     return (
-        <html lang="en">
-            <body>
-                <ConnectionProvider endpoint={endpoint}>
-                    <WalletProvider wallets={wallets} autoConnect>
-                        <WalletModalProvider>
-                            {children}
-                        </WalletModalProvider>
-                    </WalletProvider>
-                </ConnectionProvider>
-            </body>
-        </html>
+        <ConnectionProvider endpoint={endpoint}>
+            <WalletProvider wallets={wallets} autoConnect>
+                <WalletModalProvider>
+                    <Component {...pageProps} />
+                </WalletModalProvider>
+            </WalletProvider>
+        </ConnectionProvider>
     );
 }
+
+export default WalletContextProvider;

@@ -1,45 +1,53 @@
-import React, { useEffect } from "react";
-import * as web3 from "@solana/web3.js";
-import * as walletAdapterReact from "@solana/wallet-adapter-react";
-import * as walletAdapterWallets from "@solana/wallet-adapter-wallets";
-import {
-  WalletModalProvider,
-  WalletMultiButton,
-} from "@solana/wallet-adapter-react-ui";
+import { FC, useEffect, useState } from 'react';
+import { useWallet } from '@solana/wallet-adapter-react';
+import { WalletMultiButton } from '@solana/wallet-adapter-react-ui';
+import { Connection, PublicKey } from '@solana/web3.js';
+import { Program, AnchorProvider } from '@project-serum/anchor';
+import idl from '../../utils/idl.json';
 
-const WalletConnectionButton = () => {
-  const endpoint = web3.clusterApiUrl("devnet");
-  const wallets = [new walletAdapterWallets.PhantomWalletAdapter()];
+const WalletConnection: FC = () => {
+    const { wallet, connect, connected, publicKey } = useWallet();
+    const [program, setProgram] = useState<Program | null>(null);
 
-  useEffect(() => {
-    const handleBodyScroll = () => {
-      const modalOpen = document.querySelector(".wallet-adapter-modal-wrapper");
-      if (modalOpen) {
-        document.body.classList.add("scroll-enabled"); // Apply custom scroll class
-      } else {
-        document.body.classList.remove("scroll-enabled"); // Remove scroll class when modal closes
-      }
+    useEffect(() => {
+        const initProgram = async () => {
+            if (wallet && publicKey) {
+                const network = "https://api.devnet.solana.com";
+                const connection = new Connection(network, "processed");
+                const provider = new AnchorProvider(
+                    connection,
+                    wallet as unknown as import("@project-serum/anchor").Wallet,
+                    { preflightCommitment: "processed" }
+                );
+                const programId = new PublicKey("9seNLSFmZRtRFcPyTWf8xVPvAaX4Q8DmBVV9kBhuH2or");
+                const program = new Program(idl as any, programId, provider);
+                setProgram(program);
+            }
+        };        initProgram();
+    }, [wallet, publicKey]);
+
+    const handleInteraction = async () => {
+        if (program) {
+            try {
+                // Example interaction: calling a method from your program
+                // const tx = await program.methods.yourMethodName().accounts({...}).rpc();
+                // console.log("Transaction signature", tx);
+            } catch (error) {
+                console.error("Error interacting with the program:", error);
+            }
+        }
     };
 
-    const observer = new MutationObserver(handleBodyScroll);
-    observer.observe(document.body, { childList: true, subtree: true });
-
-    return () => {
-      observer.disconnect();
-    };
-  }, []);
-
-  return (
-    <walletAdapterReact.ConnectionProvider
-      endpoint="https://solana-devnet.g.alchemy.com/v2/J0Wh8WUuG5Cm0yeMfDNAqv3xoERG6OQK"
-    >
-      <walletAdapterReact.WalletProvider wallets={wallets} autoConnect>
-        <WalletModalProvider>
-          <WalletMultiButton className="!bg-helius-orange !rounded-xl hover:!bg-[#161b19] transition-all duration-200" />
-        </WalletModalProvider>
-      </walletAdapterReact.WalletProvider>
-    </walletAdapterReact.ConnectionProvider>
-  );
+    return (
+        <div>
+            <WalletMultiButton />
+            {connected && (
+                <button onClick={handleInteraction}>
+                    Interact with Program
+                </button>
+            )}
+        </div>
+    );
 };
 
-export default WalletConnectionButton;
+export default WalletConnection;
