@@ -6,7 +6,7 @@ const config: Pick<Config, "content" | "presets" | "plugins"> = {
   content: ["./src/app/**/*.tsx"],
   presets: [sharedConfig],
   plugins: [
-    function ({ addUtilities }) {
+    function ({ addUtilities } : any) {
       addUtilities({
         ".scroll-enabled": {
           overflow: "auto !important", // Force scroll when this class is applied
