@@ -28,15 +28,11 @@ const images = [
 export default function Page(): JSX.Element {
   return (
     <div className="flex flex-col min-h-screen">
-      <header>
-        <NavbarDemo/>
-      </header>
+  
       <main className="flex-grow">
         <Main/>
       </main>
-     <footer className="mt-auto">
-      <Footer/>
-     </footer>
+  
     </div>
   );
 }

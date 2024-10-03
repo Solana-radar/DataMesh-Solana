@@ -14,8 +14,9 @@ const Main: React.FC = () => {
       <div className={`container pt-12 mx-auto  flex  ${styles.HeroDiv}  `}>
         <div className={`${styles.HeroDiv_text}`}>
           <h1 className="text-6xl font-bold text-white mb-6">
-            Now earn for your Invoice bills on solana
+            Now earn for your <br /> Invoice bills on solana
           </h1>
+
           <p>
             Welcome to DataMesh - Your Key to Earning and Saving with EcoBash
             <br />
@@ -30,7 +31,7 @@ const Main: React.FC = () => {
       <div
         className={`container flex flex-col items-center justify-center mx-auto ${styles.hero_Share} `}
       >
-        <h2 className="pt-40 mb-1 text-2xl font-semibold tracking-tighter text-center text-gray-200 lg:text-7xl md:text-6xl">
+        <h2 className="pt-10 mb-1 text-2xl font-semibold tracking-tighter text-center text-gray-200 lg:text-7xl md:text-6xl">
           Share and Earn.
         </h2>
         <p>
@@ -53,7 +54,7 @@ const Main: React.FC = () => {
         <h1 className="mx-auto text-xl text-center text-gray-300 font-normal leading-relaxed lg:w-2/3">
           Features of EcoBash.
         </h1>
-        <div className="h-screen w-full pt-10 px-4">
+        <div className=" w-full pt-10 px-4">
           <div className="mx-auto w-full max-w-5xl divide-y divide-white/5 rounded-xl bg-white/5">
             <Disclosure as="div" className="p-6" defaultOpen={true}>
               <DisclosureButton className="group flex w-full items-center justify-between">
