@@ -47,54 +47,49 @@ export class Web3Service {
       DATAMESH_PROGRAM_ID
     )
 
-    try {
-      const instruction = await this.program.methods
-        .submitEconomicData(
-          economicData.invoiceData,
-          economicData.hsnNumber,
-          new BN(Number(economicData.amount)),
-          Number(economicData.quantity),
-          new BN(Number(economicData.timestamp)),
-          economicData.signature
-        )
-        .accounts({ node: nodePublicKey })
-        .instruction()
-
-      // Fetch the latest blockhash (only once)
-      const latestBlockhash = await this.connection.getLatestBlockhash()
-      console.log('latestBlockhash: ', latestBlockhash)
-
-      // Create a message (MessageV0)
-      const messageV0 = new TransactionMessage({
-        payerKey: this.wallet.publicKey,
-        recentBlockhash: latestBlockhash.blockhash,
-        instructions: [instruction], // Transaction instructions
-      }).compileToV0Message()
-
-      // Create the versioned transaction
-      const versionedTx = new VersionedTransaction(messageV0)
-
-      // Sign the versioned transaction
-      const signedVersionedTx = await this.wallet.signTransaction(versionedTx)
-      console.log('Transaction sign successfully!')
-
-      // Send the signed transaction
-      const txId = await this.connection.sendRawTransaction(
-        signedVersionedTx.serialize()
+    const instruction = await this.program.methods
+      .submitEconomicData(
+        economicData.invoiceData,
+        economicData.hsnNumber,
+        new BN(Number(economicData.amount)),
+        Number(economicData.quantity),
+        new BN(Number(economicData.timestamp)),
+        economicData.signature
       )
-      console.log('Raw transaction send successfully!')
+      .accounts({ node: nodePublicKey })
+      .instruction()
 
-      // Confirm the transaction
-      await this.connection.confirmTransaction({
-        signature: txId,
-        blockhash: latestBlockhash.blockhash,
-        lastValidBlockHeight: latestBlockhash.lastValidBlockHeight,
-      })
+    // Fetch the latest blockhash (only once)
+    const latestBlockhash = await this.connection.getLatestBlockhash()
+    console.log('latestBlockhash: ', latestBlockhash)
 
-      console.log('Transaction ID:', txId)
-    } catch (err) {
-      console.error('Transaction error: ', err)
-      return
-    }
+    // Create a message (MessageV0)
+    const messageV0 = new TransactionMessage({
+      payerKey: this.wallet.publicKey,
+      recentBlockhash: latestBlockhash.blockhash,
+      instructions: [instruction], // Transaction instructions
+    }).compileToV0Message()
+
+    // Create the versioned transaction
+    const versionedTx = new VersionedTransaction(messageV0)
+
+    // Sign the versioned transaction
+    const signedVersionedTx = await this.wallet.signTransaction(versionedTx)
+    console.log('Transaction sign successfully!')
+
+    // Send the signed transaction
+    const txId = await this.connection.sendRawTransaction(
+      signedVersionedTx.serialize()
+    )
+    console.log('Raw transaction send successfully!')
+
+    // Confirm the transaction
+    await this.connection.confirmTransaction({
+      signature: txId,
+      blockhash: latestBlockhash.blockhash,
+      lastValidBlockHeight: latestBlockhash.lastValidBlockHeight,
+    })
+
+    console.log('Transaction ID:', txId)
   }
 }
