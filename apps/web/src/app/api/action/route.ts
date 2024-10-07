@@ -18,7 +18,7 @@ import {
 export const GET = async (req: Request) => {
   const url = new URL(req.url)
   const payload: ActionGetResponse = {
-    icon:"https://printler.com/uk/poster/140781/",
+    icon:"https://img.icons8.com/ios-filled/50/000000/donate.png",
     label: "Donate for DataMesh",
     description: "Donate so that we can get more data",
     title: "DataMesh Donation Blink",
