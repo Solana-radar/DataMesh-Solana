@@ -24,6 +24,15 @@ export const GET = async (req: Request) => {
     label: "Donate for DataMesh",
     description: "Donate so that we can get more data",
     title: "DataMesh Donation Blink",
+    links: {
+      actions: [
+        {
+          label: "0.1 SOL",
+          href: "/api/action?amount=0.1",
+          type : "transaction"
+        }
+      ]
+    }
   };
   return Response.json(payload, {
     headers: ACTIONS_CORS_HEADERS,
@@ -34,13 +43,27 @@ export const OPTIONS = GET;
 
 export const POST = async (req: Request) => {
   try {
+    const receivingWalletAddress = process.env.NEXT_PUBLIC_RECEIVERS_WALLET_DEV;
+    const url = new URL(req.url);
     const body: ActionPostRequest = await req.json();
     let account; // changed
     try {
       account = new PublicKey(body.account);
+      
     } catch (error) {
       throw "Invalid account provided. It's not a real Pubkey";
     }
+
+    let amount: number = 0.1;
+    if (url.searchParams.has("amount")) {
+      try {
+        amount = parseFloat(url.searchParams.get("amount") || "0.1") || amount;
+        
+      } catch (err) {
+        throw "Invalid 'amount' input";
+      }
+    }
+    console.log("amount", amount);
 
     const connection = new Connection(clusterApiUrl('devnet')) //  change this to devnet before deplpoymnt
 
@@ -51,7 +74,7 @@ export const POST = async (req: Request) => {
     const transaction = new Transaction().add(
       SystemProgram.transfer({
         fromPubkey: account,
-        lamports: 0.001 * LAMPORTS_PER_SOL,
+        lamports: amount * LAMPORTS_PER_SOL,
         toPubkey: TO_PIBKEY,
         programId: SystemProgram.programId,
       })
@@ -61,7 +84,7 @@ export const POST = async (req: Request) => {
     const payload: ActionPostResponse = await createPostResponse({
       fields: {
         transaction: transaction, // changed
-        message: "Thanks for the donation",
+        message: "Thank you for the donation",
         type: "transaction", // changed
       },
     });
