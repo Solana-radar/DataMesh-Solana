@@ -1,4 +1,3 @@
-"use client";
 import React from "react";
 import Image from "next/image";
 import { InvoiceImg, shareImg } from "../images";
@@ -9,43 +8,9 @@ import {
   DisclosurePanel,
 } from "@headlessui/react";
 import { ChevronDownIcon } from "@heroicons/react/20/solid";
-import { XMarkIcon } from '@heroicons/react/24/solid';
-
 const Main: React.FC = () => {
-  const generateBlinks = () => {
-    console.log("Blinks generated!");
-    const actionUrl = "http://localhost:3000/api/action"; // Local API endpoint
-    const encodedActionUrl = encodeURIComponent(`solana-action:${actionUrl}`);
-    const blinkUrl = `http://localhost:3000/api/action=${encodedActionUrl}`;
-  
-    console.log("Share this Blink link:", blinkUrl);
-    
-    // Copy the Blink URL to the clipboard
-    navigator.clipboard.writeText(blinkUrl)
-      .then(() => {
-        // Show an alert when successfully copied
-        alert("Blink link copied to clipboard!");
-      })
-      .catch(err => {
-        console.error("Failed to copy: ", err);
-        alert("Failed to copy the Blink link.");
-      });
-
-    return blinkUrl;
-  };
-
   return (
     <section className="text-gray-600 body-font">
-      <div className="flex justify-center mt-4">
-        {/* Add the new button */}
-        <button 
-          onClick={generateBlinks} 
-          className="bg-blue-500 text-white px-4 py-2 rounded flex items-center" // Added flex and items-center
-        >
-          Share to
-          <XMarkIcon className="h-5 w-5 mr-2" />
-        </button>
-      </div>
       <div className={`container pt-12 mx-auto  flex  ${styles.HeroDiv}  `}>
         <div className={`${styles.HeroDiv_text}`}>
           <h1 className="text-6xl font-bold text-white mb-6">
@@ -147,8 +112,6 @@ const Main: React.FC = () => {
           ))}
       </div> */}
       </div>
-
-      
     </section>
   );
 };
