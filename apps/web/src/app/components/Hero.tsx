@@ -1,4 +1,3 @@
-"use client";
 import React from "react";
 import Image from "next/image";
 import { InvoiceImg, shareImg } from "../images";
@@ -9,9 +8,8 @@ import {
   DisclosurePanel,
 } from "@headlessui/react";
 import { ChevronDownIcon } from "@heroicons/react/20/solid";
-import { XMarkIcon } from '@heroicons/react/24/solid';
-
 const Main: React.FC = () => {
+<<<<<<< HEAD
   const generateBlinks = () => {
     console.log("Blinks generated!");
     const actionUrl = "https://data-mesh-solana-web.vercel.app/api/action"; // Local API endpoint
@@ -34,18 +32,10 @@ const Main: React.FC = () => {
     return blinkUrl;
   };
 
+=======
+>>>>>>> refs/remotes/origin/main
   return (
     <section className="text-gray-600 body-font">
-      <div className="flex justify-center mt-4">
-        {/* Add the new button */}
-        <button 
-          onClick={generateBlinks} 
-          className="bg-blue-500 text-white px-4 py-2 rounded flex items-center" // Added flex and items-center
-        >
-          Share to
-          <XMarkIcon className="h-5 w-5 mr-2" />
-        </button>
-      </div>
       <div className={`container pt-12 mx-auto  flex  ${styles.HeroDiv}  `}>
         <div className={`${styles.HeroDiv_text}`}>
           <h1 className="text-6xl font-bold text-white mb-6">
@@ -147,8 +137,6 @@ const Main: React.FC = () => {
           ))}
       </div> */}
       </div>
-
-      
     </section>
   );
 };
