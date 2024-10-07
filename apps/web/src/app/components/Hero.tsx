@@ -14,9 +14,9 @@ import { XMarkIcon } from '@heroicons/react/24/solid';
 const Main: React.FC = () => {
   const generateBlinks = () => {
     console.log("Blinks generated!");
-    const actionUrl = "http://localhost:3000/api/action"; // Local API endpoint
+    const actionUrl = "http://https://data-mesh-solana-web.vercel.app/api/action"; // Local API endpoint
     const encodedActionUrl = encodeURIComponent(`solana-action:${actionUrl}`);
-    const blinkUrl = `http://localhost:3000/api/action=${encodedActionUrl}`;
+    const blinkUrl = `http://https://data-mesh-solana-web.vercel.app/api/action=${encodedActionUrl}`;
   
     console.log("Share this Blink link:", blinkUrl);
     

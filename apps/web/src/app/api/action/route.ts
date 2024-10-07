@@ -43,7 +43,6 @@ export const OPTIONS = GET;
 
 export const POST = async (req: Request) => {
   try {
-    const receivingWalletAddress = process.env.NEXT_PUBLIC_RECEIVERS_WALLET_DEV;
     const url = new URL(req.url);
     const body: ActionPostRequest = await req.json();
     let account; // changed
@@ -65,7 +64,7 @@ export const POST = async (req: Request) => {
     }
     console.log("amount", amount);
 
-    const connection = new Connection(clusterApiUrl('devnet')) //  change this to devnet before deplpoymnt
+    const connection = new Connection(clusterApiUrl('mainnet-beta')) //  change this to devnet before deplpoymnt
 
     const TO_PIBKEY = new PublicKey(
       "H71iRgaTaCft1nLZbMiiz6gWB8HaAxsbbZVRYGiWmSUT" // change this to reviver mainnet wallet address
