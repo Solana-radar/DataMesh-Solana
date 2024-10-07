@@ -16,20 +16,18 @@ import {
 } from "@solana/web3.js";
 
 export const GET = async (req: Request) => {
+  const url = new URL(req.url)
   const payload: ActionGetResponse = {
-    icon: new URL(
-      "/web/src/app/images/invoice.png",
-      new URL(req.url).origin
-    ).toString(),
+    icon:"https://printler.com/uk/poster/140781/",
     label: "Donate for DataMesh",
     description: "Donate so that we can get more data",
     title: "DataMesh Donation Blink",
     links: {
       actions: [
         {
-          label: "0.1 SOL",
-          href: "/api/action?amount=0.1",
-          type : "transaction"
+          label: "Donate 0.1 SOL",
+          href: `${url.href}?amount=0.1`,
+          type : 'external-link'
         }
       ]
     }
@@ -64,22 +62,33 @@ export const POST = async (req: Request) => {
     }
     console.log("amount", amount);
 
-    const connection = new Connection(clusterApiUrl('mainnet-beta')) //  change this to devnet before deplpoymnt
+    const connection = new Connection(clusterApiUrl('mainnet-beta'), 'confirmed') //  change this to devnet before deplpoymnt
 
-    const TO_PIBKEY = new PublicKey(
-      "H71iRgaTaCft1nLZbMiiz6gWB8HaAxsbbZVRYGiWmSUT" // change this to reviver mainnet wallet address
+    const TO_PUBKEY = new PublicKey(
+      // change this to reviver mainnet wallet address
+
+      // devnet
+      // "H71iRgaTaCft1nLZbMiiz6gWB8HaAxsbbZVRYGiWmSUT"
+
+      // mainnet
+      "H71iRgaTaCft1nLZbMiiz6gWB8HaAxsbbZVRYGiWmSUT" 
     );
 
     const transaction = new Transaction().add(
       SystemProgram.transfer({
         fromPubkey: account,
         lamports: amount * LAMPORTS_PER_SOL,
-        toPubkey: TO_PIBKEY,
+        toPubkey: TO_PUBKEY,
         programId: SystemProgram.programId,
       })
     );
-    transaction.feePayer = account;
-    transaction.recentBlockhash = (await connection.getLatestBlockhash()).blockhash
+    // transaction.feePayer = account;
+    // transaction.recentBlockhash = (await connection.getLatestBlockhash()).blockhash
+    const blockHeight = await connection.getLatestBlockhash();
+    transaction.recentBlockhash = blockHeight.blockhash;
+    transaction.lastValidBlockHeight = blockHeight.lastValidBlockHeight
+    transaction.feePayer = account
+
     const payload: ActionPostResponse = await createPostResponse({
       fields: {
         transaction: transaction, // changed
