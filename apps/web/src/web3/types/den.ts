@@ -77,6 +77,16 @@ export type Den = {
           isMut: true
           isSigner: false
         },
+        {
+          name: 'user'
+          isMut: true
+          isSigner: true
+        },
+        {
+          name: 'systemProgram'
+          isMut: false
+          isSigner: false
+        },
       ]
       args: [
         {
@@ -624,6 +634,16 @@ export const IDL: Den = {
         {
           name: 'node',
           isMut: true,
+          isSigner: false,
+        },
+        {
+          name: 'user',
+          isMut: true,
+          isSigner: true,
+        },
+        {
+          name: 'systemProgram',
+          isMut: false,
           isSigner: false,
         },
       ],

@@ -12,4 +12,4 @@ export const DATAMESH_PROGRAM_ID = new PublicKey(idl.metadata.address);
 export const DATAMESH_PROGRAM_INTERFACE = JSON.parse(JSON.stringify(idl));
 // export const DATAMESH_PROGRAM_INTERFACE = JSON.parse(JSON.stringify({}));
 
-export const DATAMESH_NODE_PDA_CONST = "node_address"
+export const DATAMESH_NODE_PDA_CONST = "DATAMESH_NODE"

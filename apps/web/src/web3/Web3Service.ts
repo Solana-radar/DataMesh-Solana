@@ -3,6 +3,7 @@ import { findProgramAddressSync } from '@project-serum/anchor/dist/cjs/utils/pub
 import { AnchorWallet } from '@solana/wallet-adapter-react'
 import {
   Connection,
+  SystemProgram,
   TransactionMessage,
   VersionedTransaction,
 } from '@solana/web3.js'
@@ -43,7 +44,7 @@ export class Web3Service {
     if (!this.program) return
 
     const [nodePublicKey] = findProgramAddressSync(
-      [Buffer.from(DATAMESH_NODE_PDA_CONST)],
+      [Buffer.from(DATAMESH_NODE_PDA_CONST), this.wallet.publicKey.toBuffer()],
       DATAMESH_PROGRAM_ID
     )
 
@@ -56,7 +57,11 @@ export class Web3Service {
         new BN(Number(economicData.timestamp)),
         economicData.signature
       )
-      .accounts({ node: nodePublicKey })
+      .accounts({
+        node: nodePublicKey,
+        user: this.wallet.publicKey,
+        systemProgram: SystemProgram.programId,
+      })
       .instruction()
 
     // Fetch the latest blockhash (only once)
