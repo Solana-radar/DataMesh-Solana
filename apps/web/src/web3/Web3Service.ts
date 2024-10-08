@@ -73,25 +73,38 @@ export class Web3Service {
   async fetchNodeAccount(): Promise<NodeAccount | undefined> {
     if (!this.program) return
 
-    const [nodePublicKey] = findProgramAddressSync(
-      [Buffer.from(DATAMESH_NODE_PDA_CONST), this.wallet.publicKey.toBuffer()],
-      DATAMESH_PROGRAM_ID
-    )
+    try {
+      const [nodePublicKey] = findProgramAddressSync(
+        [
+          Buffer.from(DATAMESH_NODE_PDA_CONST),
+          this.wallet.publicKey.toBuffer(),
+        ],
+        DATAMESH_PROGRAM_ID
+      )
 
-    const nodeAccount =
-      await this.program.account.nodeAccount.fetch(nodePublicKey)
-    console.log(nodeAccount)
-    return { ...nodeAccount, nodeId: nodeAccount.nodeId.toBase58() }
+      const nodeAccount =
+        await this.program.account.nodeAccount.fetch(nodePublicKey)
+      console.log(nodeAccount)
+      return { ...nodeAccount, nodeId: nodeAccount.nodeId.toBase58() }
+    } catch (error) {
+      console.log(error)
+      return
+    }
   }
 
   async fetchAllNodeAccounts(): Promise<NodeAccount[]> {
     if (!this.program) return []
 
-    const nodeAccounts = await this.program.account.nodeAccount.all()
-    return nodeAccounts.map(({ account }) => ({
-      ...account,
-      nodeId: account.nodeId.toBase58(),
-    }))
+    try {
+      const nodeAccounts = await this.program.account.nodeAccount.all()
+      return nodeAccounts.map(({ account }) => ({
+        ...account,
+        nodeId: account.nodeId.toBase58(),
+      }))
+    } catch (error) {
+      console.log(error)
+      return []
+    }
   }
 
   async validateInvoiceData(nodePublicKey: string, hsnNumber: string) {

@@ -126,7 +126,7 @@ const Invoices = () => {
                         {invoice.signature}
                       </td>
                       <td className='border border-gray-300 p-2'>
-                        {invoice.is_verified}
+                        {invoice.is_verified ? 'True': 'False'}
                       </td>
                       {wallet &&
                         ADMIN_ADDRESSES.includes(wallet.publicKey.toBase58()) &&
