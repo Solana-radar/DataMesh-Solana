@@ -84,6 +84,12 @@ export default function Navbar() {
                 >
                   Share and Earn{" "}
                 </Link>
+                <Link
+                  href="/invoices"
+                  className="inline-block px-4 py-2 text-2xl font-normal text-gray-800 no-underline rounded-md dark:text-gray-200 hover:text-indigo-500 focus:text-indigo-500  focus:outline-none "
+                >
+                  Invoices{" "}
+                </Link>
               </li>
             </ul>
           </div>
@@ -141,7 +147,7 @@ export default function Navbar() {
                     className="w-full px-6 py-2 mt-3 text-center text-white bg-indigo-600 rounded-md lg:ml-5"
                   >
                     <div className={styles.shareToX}>
-                      <Blinks /> <p>Share to Twitter</p>
+                      <Blinks /> <p className="text-white">Share Blink</p>
                     </div>
                   </Link>
                 </>

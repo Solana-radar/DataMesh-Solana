@@ -47,8 +47,8 @@ export default function Blinks() {
                 className={`p-3 ${styles.share_btn} `}
                 onClick={generateBlinks}
               >
-                Share to
-                <svg
+                Click to share a blink to spread the word about us
+                {/* <svg
                   xmlns="http://www.w3.org/2000/svg"
                   x="0px"
                   y="0px"
@@ -74,7 +74,7 @@ export default function Blinks() {
                     fill="#fff"
                     points="24.45,21.721 25.355,23.01 33.136,14 31.136,14"
                   ></polygon>
-                </svg>{" "}
+                </svg>{" "} */}
               </div>
             </PopoverPanel>
           </Popover>

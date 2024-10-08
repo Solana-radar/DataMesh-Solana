@@ -10,6 +10,10 @@ import {
   DisclosurePanel,
 } from "@headlessui/react";
 import { ChevronDownIcon } from "@heroicons/react/20/solid";
+import Marquee from "react-fast-marquee";
+import phantomImg from "../../../public/images/phan.png";
+import solflareImg from "../../../public/images/solflaree.png";
+import SolanaImage from "../../../public/images/solana.png";
 
 const Main: React.FC = () => {
   return (
@@ -22,7 +26,7 @@ const Main: React.FC = () => {
           </h1>
 
           <p>
-            Welcome to DataMesh - Your Key to Earning and Saving with EcoBash
+            Welcome to DataMesh - Your Key to Earning and Saving with Datamesh
             <br />
           </p>
         </div>
@@ -31,7 +35,47 @@ const Main: React.FC = () => {
           <Image src={InvoiceImg} alt="InvoiceImg" width={500} height={500} />
         </div>
       </div>
-
+      <Marquee
+        className={styles.Marquee}
+        speed={20}
+        pauseOnHover={false}
+        gradient={false}
+      >
+        <Image src={phantomImg} width={400} height={400} alt="phantomImg" />
+        <Image src={solflareImg} width={400} height={400} alt="solflareImg" />
+        <Image
+          src={SolanaImage}
+          width={400}
+          height={400}
+          alt="SolanaImage"
+        />{" "}
+        <Image src={solflareImg} width={400} height={400} alt="solflareImg" />
+        <Image
+          src={phantomImg}
+          width={400}
+          height={400}
+          alt="phantomImg"
+        />{" "}
+        <Image src={solflareImg} width={400} height={400} alt="solflareImg" />
+        <Image src={SolanaImage} width={400} height={400} alt="SolanaImage" />
+        <Image
+          src={phantomImg}
+          width={400}
+          height={400}
+          alt="phantomImg"
+        />{" "}
+        <Image src={SolanaImage} width={400} height={400} alt="SolanaImage" />
+        <Image src={phantomImg} width={400} height={400} alt="phantomImg" />
+        <Image src={solflareImg} width={400} height={400} alt="solflareImg" />
+        <Image src={phantomImg} width={400} height={400} alt="phantomImg" />
+        <Image
+          src={solflareImg}
+          width={400}
+          height={400}
+          alt="solflareImg"
+        />{" "}
+        <Image src={SolanaImage} width={400} height={400} alt="SolanaImage" />
+      </Marquee>
       <div
         className={`container flex flex-col items-center justify-center mx-auto ${styles.hero_Share} `}
       >
@@ -39,7 +83,7 @@ const Main: React.FC = () => {
           Share and Earn.
         </h2>
         <p>
-          By uploading your purchase invoices to the EcoBash platform, you
+          By uploading your purchase invoices to the Datamesh platform, you
           convert your data into real value. Each contribution earns you
           rewards, allowing you to profit from the data you generate. Your
           purchase history becomes a powerful tool not just for you, but for the
@@ -56,7 +100,7 @@ const Main: React.FC = () => {
         </div>
         <br />
         <h1 className="mx-auto text-xl text-center text-gray-300 font-normal leading-relaxed lg:w-2/3">
-          Features of EcoBash.
+          Features of Datamesh.
         </h1>
         <div className=" w-full pt-10 px-4 py-6 ">
           <div className="mx-auto w-full max-w-5xl divide-y divide-black/5 rounded-xl bg-black/5">
