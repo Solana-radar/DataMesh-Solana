@@ -6,8 +6,11 @@ import { Web3Service } from '../../web3/Web3Service'
 import { NodeEconomicData } from '../../web3/types'
 import Footer from '../components/Footer'
 import { NavbarDemo } from '../components/navbar'
+import WarningDialog from '../components/Warning'
 
 const Invoices = () => {
+  const [isDialogOpen, setIsDialogOpen] = useState(false)
+
   const [invoices, setInvoices] = useState<NodeEconomicData[]>([])
 
   const [isSubmitting, setIsSubmitting] = useState(false)
@@ -17,9 +20,12 @@ const Invoices = () => {
     [wallet]
   )
 
+  // const [activeNodePubkey, setActiveNodePubkey] = useState<string>()
+  // const [activeHsnNumber, setActiveHsnNumber] = useState<string>()
+
   const validateInvoiceData = async (
-    nodePublicKey: string,
-    hsnNumber: string
+    activeNodePubkey: string,
+    activeHsnNumber: string
   ) => {
     setIsSubmitting(true)
     if (!web3Service) {
@@ -29,8 +35,8 @@ const Invoices = () => {
 
     try {
       const signature = await web3Service.validateInvoiceData(
-        nodePublicKey,
-        hsnNumber
+        activeNodePubkey,
+        activeHsnNumber
       )
 
       console.log('Signature ', signature)
@@ -41,13 +47,13 @@ const Invoices = () => {
       alert(error.toString())
     } finally {
       setIsSubmitting(false)
+      setIsDialogOpen(false)
     }
   }
 
   // Fetch and set the invoice data when the component mounts
   const loadInvoices = async () => {
     const data = await web3Service?.fetchAllNodeAccounts()
-    console.log("Hello invoices",data)
 
     if (data) {
       const allInvoices = data.reduce<NodeEconomicData[]>(
@@ -124,12 +130,15 @@ const Invoices = () => {
                             <button
                               disabled={!wallet || isSubmitting}
                               className={`${isSubmitting ? '' : 'bg-blue-600'} text-white py-1 px-2 rounded`}
-                              onClick={() =>
+                              onClick={() => {
+                                // setActiveNodePubkey(invoice.nodeId)
+                                // setActiveHsnNumber(invoice.hsnNumber)
+                                // setIsDialogOpen(true)
                                 validateInvoiceData(
                                   invoice.nodeId,
                                   invoice.hsnNumber
                                 )
-                              }
+                              }}
                             >
                               Approve
                             </button>
@@ -144,6 +153,14 @@ const Invoices = () => {
             <p>No invoices found for this node account.</p>
           )}
         </div>
+        {/* <WarningDialog
+          isOpen={isDialogOpen}
+          onClose={() => {
+            console.log("Helloe")
+            setIsDialogOpen(false)
+          }}
+          onConfirm={() => validateInvoiceData()}
+        /> */}
       </main>
       <footer className='mt-auto'>
         <Footer />

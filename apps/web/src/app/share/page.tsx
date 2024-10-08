@@ -54,6 +54,7 @@ const ShareAndEarn = () => {
   }
 
   useEffect(() => {
+    console.log("rewards...", rewards)
     // Simulate rewards earning
     const earned = formData.invoiceData.trim().length / 1000
     setExtimatedRewards(rewards + earned)
@@ -63,7 +64,7 @@ const ShareAndEarn = () => {
   const loadInvoices = async () => {
     const data = await web3Service?.fetchNodeAccount()
     if (data) {
-      setRewards(data.totalRewards)
+      setRewards(Number(data.totalRewards))
     }
   }
 

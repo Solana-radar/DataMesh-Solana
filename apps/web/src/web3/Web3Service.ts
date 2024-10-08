@@ -51,31 +51,50 @@ export class Web3Service {
       DATAMESH_PROGRAM_ID
     )
 
+    const transactionInstructions: TransactionInstruction[] = []
     // Step 1: Create the compute budget instruction
-    const computeBudgetInstruction = ComputeBudgetProgram.setComputeUnitLimit({
-      units: 500_000, // Set to the desired compute units
-    })
-
-    const instruction = await this.program.methods
-      .submitEconomicData(
-        economicData.invoiceData,
-        economicData.hsnNumber,
-        new BN(Number(economicData.amount)),
-        Number(economicData.quantity),
-        new BN(new Date(economicData.timestamp).getTime()),
-        economicData.signature
-      )
-      .accounts({
-        node: nodePublicKey,
-        user: this.wallet.publicKey,
-        systemProgram: SystemProgram.programId,
+    transactionInstructions.push(
+      ComputeBudgetProgram.setComputeUnitLimit({
+        units: 500_000, // Set to the desired compute units
       })
-      .instruction()
+    )
 
-    return this.createAndSendTransaction([
-      computeBudgetInstruction,
-      instruction,
-    ])
+    // adding initialize instruction if account is not yet initialized
+    await this.program.account.nodeAccount
+      .fetch(nodePublicKey)
+      .catch(async (error) => {
+        console.log(error)
+        transactionInstructions.push(
+          await this.program.methods
+            .initializeNode()
+            .accounts({
+              node: nodePublicKey,
+              user: this.wallet.publicKey,
+              systemProgram: SystemProgram.programId,
+            })
+            .instruction()
+        )
+      })
+
+    transactionInstructions.push(
+      await this.program.methods
+        .submitEconomicData(
+          economicData.invoiceData,
+          economicData.hsnNumber,
+          new BN(Number(economicData.amount)),
+          Number(economicData.quantity),
+          new BN(new Date(economicData.timestamp).getTime()),
+          economicData.signature
+        )
+        .accounts({
+          node: nodePublicKey,
+          user: this.wallet.publicKey,
+          systemProgram: SystemProgram.programId,
+        })
+        .instruction()
+    )
+
+    return this.createAndSendTransaction(transactionInstructions)
   }
 
   async fetchNodeAccount(): Promise<NodeAccount | undefined> {
@@ -92,7 +111,6 @@ export class Web3Service {
 
       const nodeAccount =
         await this.program.account.nodeAccount.fetch(nodePublicKey)
-      console.log(nodeAccount)
       return { ...nodeAccount, nodeId: nodeAccount.nodeId.toBase58() }
     } catch (error) {
       console.log(error)
