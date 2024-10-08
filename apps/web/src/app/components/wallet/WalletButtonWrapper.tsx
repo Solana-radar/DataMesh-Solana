@@ -3,7 +3,7 @@ import { useWallet } from '@solana/wallet-adapter-react';
 import { WalletMultiButton } from '@solana/wallet-adapter-react-ui';
 import { Connection, PublicKey } from '@solana/web3.js';
 import { Program, AnchorProvider } from '@project-serum/anchor';
-import idl from '../../utils/idl.json';
+
 
 const WalletConnection: FC = () => {
     const { wallet, connect, connected, publicKey } = useWallet();
@@ -19,9 +19,6 @@ const WalletConnection: FC = () => {
                     wallet as unknown as import("@project-serum/anchor").Wallet,
                     { preflightCommitment: "processed" }
                 );
-                const programId = new PublicKey("9seNLSFmZRtRFcPyTWf8xVPvAaX4Q8DmBVV9kBhuH2or");
-                const program = new Program(idl as any, programId, provider);
-                setProgram(program);
             }
         };        initProgram();
     }, [wallet, publicKey]);
