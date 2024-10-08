@@ -38,11 +38,11 @@ const WalletConnection: FC = () => {
     return (
         <div>
             <WalletMultiButton />
-            {connected && (
+            {/* {connected && (
                 <button onClick={handleInteraction}>
                     Interact with Program
                 </button>
-            )}
+            )} */}
         </div>
     );
 };

@@ -13,7 +13,7 @@
 }
 
 .HeroDiv_text h1 {
-    font-size: 5em;
+    font-size: 4em;
     text-transform: uppercase;
 
 }
@@ -75,6 +75,8 @@
     }
 }
 
+
+
 @media screen and (max-width: 1149px) {
 
     .HeroDiv_text h1 {
@@ -83,7 +85,8 @@
     }
 }
 
-@media screen and (max-width: 816px) {
+
+@media screen and (max-width: 900px) {
 
     .HeroDiv {
         flex-direction: column;
@@ -97,9 +100,25 @@
     }
 
     .HeroDiv_text h1 {
-        font-size: 3em;
-        width: 80%;
+        font-size: 2.4em;
+        width: 100%;
+    }
+
+    .hero_Share p {
+        width: 100%;
     }
 }
 
 /* HeroDiv */
+
+@media screen and (max-width: 900px) {
+
+    .HeroDiv_text h1 br {
+        display: none;
+    }
+
+    .HeroDiv_text h1 {
+        font-size: 2em;
+    }
+
+}

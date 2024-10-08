@@ -1,5 +1,6 @@
-"use client"
+"use client";
 import { useState } from "react";
+import styles from "./share.module.css";
 
 const ShareAndEarn = () => {
   const [formData, setFormData] = useState({
@@ -20,20 +21,25 @@ const ShareAndEarn = () => {
     setRewards(rewards + earned);
   };
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
   return (
-    <div className="min-h-screen bg-black p-8">
-      <div className="max-w-4xl mx-auto bg-gray-800 p-8 rounded-lg shadow-lg">
+    <div className={`min-h-screen bg-black p-8   ${styles.shareDiv}`}>
+      <section className="max-w-4xl mx-auto bg-gray-800 p-8 rounded-lg shadow-lg">
         <h1 className="text-3xl font-semibold text-center text-white mb-6">
-          Share to Earn for End Customers
+          Share to Earn <br /> for End Customers
         </h1>
 
         <form onSubmit={handleSubmit} className="space-y-6">
           <div>
-            <label htmlFor="invoiceData" className="block text-sm font-medium text-gray-300">
+            <label
+              htmlFor="invoiceData"
+              className="block text-sm font-medium text-gray-300"
+            >
               Invoice Data (JSON)
             </label>
             <textarea
@@ -48,7 +54,10 @@ const ShareAndEarn = () => {
           </div>
 
           <div>
-            <label htmlFor="hsnNumber" className="block text-sm font-medium text-gray-300">
+            <label
+              htmlFor="hsnNumber"
+              className="block text-sm font-medium text-gray-300"
+            >
               HSN Number
             </label>
             <input
@@ -64,7 +73,10 @@ const ShareAndEarn = () => {
           </div>
 
           <div>
-            <label htmlFor="amount" className="block text-sm font-medium text-gray-300">
+            <label
+              htmlFor="amount"
+              className="block text-sm font-medium text-gray-300"
+            >
               Amount
             </label>
             <input
@@ -80,7 +92,10 @@ const ShareAndEarn = () => {
           </div>
 
           <div>
-            <label htmlFor="quantity" className="block text-sm font-medium text-gray-300">
+            <label
+              htmlFor="quantity"
+              className="block text-sm font-medium text-gray-300"
+            >
               Quantity
             </label>
             <input
@@ -96,7 +111,10 @@ const ShareAndEarn = () => {
           </div>
 
           <div>
-            <label htmlFor="timestamp" className="block text-sm font-medium text-gray-300">
+            <label
+              htmlFor="timestamp"
+              className="block text-sm font-medium text-gray-300"
+            >
               Purchase Timestamp
             </label>
             <input
@@ -120,10 +138,11 @@ const ShareAndEarn = () => {
 
         <div className="mt-8 text-center">
           <h2 className="text-xl font-semibold text-white">
-            Total Rewards: <span className="text-blue-400">{rewards}</span> points
+            Total Rewards: <span className="text-blue-400">{rewards}</span>{" "}
+            points
           </h2>
         </div>
-      </div>
+      </section>
     </div>
   );
 };
