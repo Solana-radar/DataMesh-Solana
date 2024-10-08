@@ -74,6 +74,12 @@ export const NavbarDemo = () => {
                 >
                   Share and Earn{" "}
                 </Link>
+                <Link
+                  href="/invoices"
+                  className="inline-block px-4 py-2 text-2xl font-normal text-gray-800 no-underline rounded-md dark:text-gray-200 hover:text-indigo-500 focus:text-indigo-500 focus:bg-indigo-100 focus:outline-none dark:focus:bg-gray-800"
+                >
+                  Invoices{" "}
+                </Link>
               </li>
             </ul>
           </div>
