@@ -15,6 +15,7 @@ const ShareAndEarn = () => {
     quantity: 0,
     timestamp: '',
     signature: crypto.randomUUID().replace(/-/g, ''),
+    is_verified: false
   })
 
   const [rewards, setRewards] = useState<number>(0)
