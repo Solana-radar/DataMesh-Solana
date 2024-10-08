@@ -14,7 +14,7 @@ export type EconomicDataEntry = {
 export type NodeAccount = {
   nodeId: string
   data: Array<EconomicDataEntry>
-  activeSince: BN
+  activeSince: Date
   isActive: boolean
   totalRewards: BN
 }

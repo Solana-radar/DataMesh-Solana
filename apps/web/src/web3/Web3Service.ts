@@ -97,9 +97,17 @@ export class Web3Service {
 
     try {
       const nodeAccounts = await this.program.account.nodeAccount.all()
+      console.log(nodeAccounts)
       return nodeAccounts.map(({ account }) => ({
         ...account,
+        data: account.data.map(({ amount, totalRewards, ...rest }) => ({
+          ...rest,
+          amount: Number(amount),
+          totalRewards: Number(totalRewards),
+        })),
         nodeId: account.nodeId.toBase58(),
+        totalRewards: Number(account.totalRewards),
+        activeSince: new Date(Number(account.activeSince)),
       }))
     } catch (error) {
       console.log(error)

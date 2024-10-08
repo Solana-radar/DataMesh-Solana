@@ -7,6 +7,7 @@ import { randomUUID } from 'crypto'
 import Footer from '../components/Footer'
 import { NavbarDemo } from '../components/navbar'
 import Success from '../components/Success'
+import { BN } from '@coral-xyz/anchor'
 
 const ShareAndEarn = () => {
   const [formData, setFormData] = useState<EconomicDataEntry>({
@@ -32,21 +33,21 @@ const ShareAndEarn = () => {
   )
 
   const handleSubmit = async (e: React.FormEvent) => {
-    setIsSubmitting(true)
     e.preventDefault()
+    setError(undefined)
+    setIsSubmitting(true)
     if (!web3Service) {
       setError('Please connect your wallet!')
       return
     }
 
-    console.log(formData)
     try {
       const signature = await web3Service.submitEconomicData(formData)
       setIsSubmitted(true)
       console.log('Signature ', signature)
     } catch (error: any) {
-      console.error(error.getLogs())
-      setError(error.toString())
+      console.log(error)
+      setError('Transaction could not be successfully completed!')
     } finally {
       setIsSubmitting(false)
     }
@@ -88,7 +89,7 @@ const ShareAndEarn = () => {
               Share to Earn for End Customers
             </h1>
 
-            {!isSubmitted ? (
+            {isSubmitted ? (
               <Success message='Your invoice was successfully submitted!' />
             ) : (
               <form onSubmit={handleSubmit} className='space-y-6'>

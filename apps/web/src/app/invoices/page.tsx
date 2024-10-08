@@ -3,25 +3,12 @@ import { useAnchorWallet } from '@solana/wallet-adapter-react'
 import { useEffect, useMemo, useState } from 'react'
 import { ADMIN_ADDRESSES } from '../../utils/constants'
 import { Web3Service } from '../../web3/Web3Service'
-import {
-  NodeEconomicData
-} from '../../web3/types'
+import { NodeEconomicData } from '../../web3/types'
 import Footer from '../components/Footer'
 import { NavbarDemo } from '../components/navbar'
 
 const Invoices = () => {
-  const [invoices, setInvoices] = useState<NodeEconomicData[]>([
-    {
-      nodeId: '',
-      amount: '200',
-      hsnNumber: 'hsn-number #1',
-      invoiceData: "{ name: 'Yello yam', price: 3542 }",
-      is_verified: false,
-      quantity: 0,
-      signature: 'signature-signature',
-      timestamp: Date.now().toString(),
-    },
-  ])
+  const [invoices, setInvoices] = useState<NodeEconomicData[]>([])
 
   const [isSubmitting, setIsSubmitting] = useState(false)
   const wallet = useAnchorWallet()
@@ -60,6 +47,8 @@ const Invoices = () => {
   // Fetch and set the invoice data when the component mounts
   const loadInvoices = async () => {
     const data = await web3Service?.fetchAllNodeAccounts()
+    console.log("Hello invoices",data)
+
     if (data) {
       const allInvoices = data.reduce<NodeEconomicData[]>(
         (invoices, { data, nodeId }) => [
@@ -126,7 +115,7 @@ const Invoices = () => {
                         {invoice.signature}
                       </td>
                       <td className='border border-gray-300 p-2'>
-                        {invoice.is_verified ? 'True': 'False'}
+                        {invoice.is_verified ? 'True' : 'False'}
                       </td>
                       {wallet &&
                         ADMIN_ADDRESSES.includes(wallet.publicKey.toBase58()) &&
