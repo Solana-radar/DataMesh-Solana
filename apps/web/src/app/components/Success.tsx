@@ -1,6 +1,6 @@
 const Success = ({ message }: { message?: string }) => {
   return (
-    <div className='flex flex-col items-center justify-center h-screen'>
+    <div className='flex flex-col items-center justify-center my-20'>
       <div className='bg-green-100 rounded-full p-6'>
         <svg
           xmlns='http://www.w3.org/2000/svg'

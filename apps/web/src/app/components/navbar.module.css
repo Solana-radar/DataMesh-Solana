@@ -1,0 +1,58 @@
+.DataMesh {
+    text-transform: uppercase;
+    font-size: 0.8em;
+}
+
+.DataMesh button {
+    margin: 0 1em;
+}
+
+.nav_Button {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.shareToX {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.shareToX p {
+    padding-left: 1em;
+}
+
+.shareToX svg {
+    width: 400px;
+}
+
+.navStyles a {
+    color: black;
+}
+
+.DataMesh {
+    color: black;
+    font-weight: bold;
+}
+
+.navStyles img {
+    border-radius: 50%;
+}
+
+@media screen and (max-width: 1024px) {
+
+    .navLink,
+    .Blinks {
+        display: none !important;
+    }
+
+}
+
+
+@media screen and (max-width: 490px) {
+    .DataMesh {
+        display: none;
+    }
+}

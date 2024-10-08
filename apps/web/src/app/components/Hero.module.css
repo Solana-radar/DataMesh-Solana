@@ -13,14 +13,19 @@
 }
 
 .HeroDiv_text h1 {
-    font-size: 5em;
+    font-size: 4em;
     text-transform: uppercase;
+    color: purple;
+}
+
+.HeroDiv_text h2 {
+    color: purple !important;
 
 }
 
 .HeroDiv_text p {
     font-size: 1.3em;
-    color: rgb(214, 214, 214);
+    color: rgb(0, 0, 0);
 
 }
 
@@ -41,7 +46,7 @@
     width: 60%;
     text-align: center;
     padding: 1em 0 2em 0;
-    color: white;
+    color: rgb(0, 0, 0);
     font-size: 1.3em;
 }
 
@@ -50,12 +55,22 @@
     padding-top: 2em;
     color: white;
     font-size: 2em;
+    color: purple;
+
 }
 
 .hero_Share img {
     width: 900px;
     height: 100%;
     border-radius: 2em;
+}
+
+.Marquee img {
+
+    width: 100%;
+    height: 50px;
+    object-fit: cover;
+    padding: 0 3em;
 }
 
 @media screen and (max-width: 1539px) {
@@ -75,6 +90,8 @@
     }
 }
 
+
+
 @media screen and (max-width: 1149px) {
 
     .HeroDiv_text h1 {
@@ -83,7 +100,8 @@
     }
 }
 
-@media screen and (max-width: 816px) {
+
+@media screen and (max-width: 900px) {
 
     .HeroDiv {
         flex-direction: column;
@@ -97,9 +115,25 @@
     }
 
     .HeroDiv_text h1 {
-        font-size: 3em;
-        width: 80%;
+        font-size: 2.4em;
+        width: 100%;
+    }
+
+    .hero_Share p {
+        width: 100%;
     }
 }
 
 /* HeroDiv */
+
+@media screen and (max-width: 900px) {
+
+    .HeroDiv_text h1 br {
+        display: none;
+    }
+
+    .HeroDiv_text h1 {
+        font-size: 2em;
+    }
+
+}

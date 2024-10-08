@@ -1,13 +1,11 @@
 'use client'
-import { useAnchorWallet, useWallet } from '@solana/wallet-adapter-react'
+import { useAnchorWallet } from '@solana/wallet-adapter-react'
 import { useEffect, useMemo, useState } from 'react'
-import { Web3Service } from '../../web3/Web3Service'
 import { EconomicDataEntry } from '../../web3/types'
-import { randomUUID } from 'crypto'
+import { Web3Service } from '../../web3/Web3Service'
 import Footer from '../components/Footer'
-import { NavbarDemo } from '../components/navbar'
+import Navbar from '../components/navbar'
 import Success from '../components/Success'
-import { BN } from '@coral-xyz/anchor'
 
 const ShareAndEarn = () => {
   const [formData, setFormData] = useState<EconomicDataEntry>({
@@ -81,11 +79,11 @@ const ShareAndEarn = () => {
   return (
     <div className='flex flex-col min-h-screen'>
       <header>
-        <NavbarDemo />
+        <Navbar />
       </header>
       <main className='flex-grow'>
         <div className='min-h-screen bg-black p-8'>
-          <div className='max-w-4xl mx-auto bg-gray-800 p-8 rounded-lg shadow-lg'>
+          <section className='max-w-4xl mx-auto bg-gray-800 p-8 rounded-lg shadow-lg'>
             <h1 className='text-3xl font-semibold text-center text-white mb-6'>
               Share to Earn for End Customers
             </h1>
@@ -200,6 +198,14 @@ const ShareAndEarn = () => {
                 >
                   Submit and Earn Rewards
                 </button>
+                {error && (
+                  <div
+                    className="text-center p-4 mb-4 text-sm text-red-800 rounded-lg bg- dark:bg-white-800 dark:text-red-400"
+                    role="alert"
+                  >
+                    {error}
+                  </div>
+                )}
               </form>
             )}
 
@@ -209,7 +215,7 @@ const ShareAndEarn = () => {
                 <span className='text-blue-400'>{extimatedRewards}</span> sol
               </h2>
             </div>
-          </div>
+          </section>
         </div>
       </main>
       <footer className='mt-auto'>

@@ -2,15 +2,11 @@
 import { useAnchorWallet } from '@solana/wallet-adapter-react'
 import { useEffect, useMemo, useState } from 'react'
 import { ADMIN_ADDRESSES } from '../../utils/constants'
-import { Web3Service } from '../../web3/Web3Service'
 import { NodeEconomicData } from '../../web3/types'
+import { Web3Service } from '../../web3/Web3Service'
 import Footer from '../components/Footer'
-import { NavbarDemo } from '../components/navbar'
-import WarningDialog from '../components/Warning'
 
 const Invoices = () => {
-  const [isDialogOpen, setIsDialogOpen] = useState(false)
-
   const [invoices, setInvoices] = useState<NodeEconomicData[]>([])
 
   const [isSubmitting, setIsSubmitting] = useState(false)
@@ -19,9 +15,6 @@ const Invoices = () => {
     () => (wallet ? new Web3Service(wallet) : null),
     [wallet]
   )
-
-  // const [activeNodePubkey, setActiveNodePubkey] = useState<string>()
-  // const [activeHsnNumber, setActiveHsnNumber] = useState<string>()
 
   const validateInvoiceData = async (
     activeNodePubkey: string,
@@ -47,7 +40,6 @@ const Invoices = () => {
       alert(error.toString())
     } finally {
       setIsSubmitting(false)
-      setIsDialogOpen(false)
     }
   }
 
@@ -73,9 +65,6 @@ const Invoices = () => {
 
   return (
     <div className='flex flex-col min-h-screen'>
-      <header>
-        <NavbarDemo />
-      </header>
       <main className='flex-grow'>
         <div className='container mx-auto p-4'>
           <h1 className='text-3xl font-bold mb-4'>Stored Invoices</h1>
@@ -83,41 +72,57 @@ const Invoices = () => {
             <div className='overflow-x-auto'>
               <table className='min-w-full table-auto border-collapse border border-gray-300'>
                 <thead>
-                  <tr>
-                    <th className='border border-gray-300 p-2'>HSN Number</th>
-                    <th className='border border-gray-300 p-2'>Invoice Data</th>
-                    <th className='border border-gray-300 p-2'>Amount</th>
-                    <th className='border border-gray-300 p-2'>Quantity</th>
-                    <th className='border border-gray-300 p-2'>Timestamp</th>
-                    <th className='border border-gray-300 p-2'>Signature</th>
-                    <th className='border border-gray-300 p-2'>Is Verified</th>
+                  <tr className='bg-gray-100'>
+                    <th className='border border-gray-300 p-2 min-w-[150px] text-left   '>
+                      HSN Number
+                    </th>
+                    <th className='border border-gray-300 p-2 min-w-[200px] text-left'>
+                      Invoice Data
+                    </th>
+                    <th className='border border-gray-300 p-2 min-w-[100px] text-left'>
+                      Amount
+                    </th>
+                    <th className='border border-gray-300 p-2 min-w-[100px] text-left'>
+                      Quantity
+                    </th>
+                    <th className='border border-gray-300 p-2 min-w-[200px] text-left'>
+                      Timestamp
+                    </th>
+                    <th className='border border-gray-300 p-2 min-w-[200px] text-left'>
+                      Signature
+                    </th>
+                    <th className='border border-gray-300 p-2 min-w-[100px] text-left'>
+                      Is Verified
+                    </th>
                     {wallet &&
                       ADMIN_ADDRESSES.includes(wallet.publicKey.toBase58()) && (
-                        <th className='border border-gray-300 p-2'>...</th>
+                        <th className='border border-gray-300 p-2 min-w-[100px] text-left'>
+                          ...
+                        </th>
                       )}
                   </tr>
                 </thead>
                 <tbody>
                   {invoices.map((invoice, index) => (
-                    <tr key={index}>
-                      <td className='border border-gray-300 p-2'>
+                    <tr key={index} className='hover:bg-gray-50'>
+                      <td className='border border-gray-300 p-2 min-w-[150px] whitespace-nowrap'>
                         {invoice.hsnNumber}
                       </td>
-                      <td className='border border-gray-300 p-2'>
+                      <td className='border border-gray-300 p-2 min-w-[200px] whitespace-nowrap'>
                         {invoice.invoiceData}
                       </td>
-                      <td className='border border-gray-300 p-2'>
+                      <td className='border border-gray-300 p-2 min-w-[100px] whitespace-nowrap'>
                         {invoice.amount}
                       </td>
-                      <td className='border border-gray-300 p-2'>
+                      <td className='border border-gray-300 p-2 min-w-[100px] whitespace-nowrap'>
                         {invoice.quantity}
                       </td>
-                      <td className='border border-gray-300 p-2'>
+                      <td className='border border-gray-300 p-2 min-w-[200px] whitespace-nowrap'>
                         {new Date(
                           Number(invoice.timestamp) * 1000
                         ).toLocaleString()}
                       </td>
-                      <td className='border border-gray-300 p-2'>
+                      <td className='border border-gray-300 p-2 min-w-[200px] whitespace-nowrap'>
                         {invoice.signature}
                       </td>
                       <td className='border border-gray-300 p-2'>
@@ -131,9 +136,6 @@ const Invoices = () => {
                               disabled={!wallet || isSubmitting}
                               className={`${isSubmitting ? '' : 'bg-blue-600'} text-white py-1 px-2 rounded`}
                               onClick={() => {
-                                // setActiveNodePubkey(invoice.nodeId)
-                                // setActiveHsnNumber(invoice.hsnNumber)
-                                // setIsDialogOpen(true)
                                 validateInvoiceData(
                                   invoice.nodeId,
                                   invoice.hsnNumber
@@ -153,14 +155,6 @@ const Invoices = () => {
             <p>No invoices found for this node account.</p>
           )}
         </div>
-        {/* <WarningDialog
-          isOpen={isDialogOpen}
-          onClose={() => {
-            console.log("Helloe")
-            setIsDialogOpen(false)
-          }}
-          onConfirm={() => validateInvoiceData()}
-        /> */}
       </main>
       <footer className='mt-auto'>
         <Footer />

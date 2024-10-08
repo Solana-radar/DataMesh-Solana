@@ -1,5 +1,4 @@
 import Image from "next/image";
-import { NavbarDemo } from "./components/navbar";
 import Main from "./components/Hero";
 import Footer from "./components/Footer";
 function Gradient({
@@ -28,15 +27,11 @@ const images = [
 export default function Page(): JSX.Element {
   return (
     <div className="flex flex-col min-h-screen">
-      <header>
-        <NavbarDemo/>
-      </header>
+  
       <main className="flex-grow">
         <Main/>
       </main>
-     <footer className="mt-auto">
-      <Footer/>
-     </footer>
+  
     </div>
   );
 }
