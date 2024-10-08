@@ -8,7 +8,7 @@ export type EconomicDataEntry = {
   quantity: number
   timestamp: string
   signature: string
-  is_verified: boolean
+  isVerified: boolean
 }
 
 export type NodeAccount = {

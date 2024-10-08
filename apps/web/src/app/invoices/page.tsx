@@ -115,11 +115,11 @@ const Invoices = () => {
                         {invoice.signature}
                       </td>
                       <td className='border border-gray-300 p-2'>
-                        {invoice.is_verified ? 'True' : 'False'}
+                        {invoice.isVerified ? 'True' : 'False'}
                       </td>
                       {wallet &&
                         ADMIN_ADDRESSES.includes(wallet.publicKey.toBase58()) &&
-                        !invoice.is_verified && (
+                        !invoice.isVerified && (
                           <td className='border border-gray-300 p-2'>
                             <button
                               disabled={!wallet || isSubmitting}
