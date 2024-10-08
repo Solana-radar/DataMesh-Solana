@@ -15,12 +15,17 @@
 .HeroDiv_text h1 {
     font-size: 4em;
     text-transform: uppercase;
+    color: purple;
+}
+
+.HeroDiv_text h2 {
+    color: purple !important;
 
 }
 
 .HeroDiv_text p {
     font-size: 1.3em;
-    color: rgb(214, 214, 214);
+    color: rgb(0, 0, 0);
 
 }
 
@@ -41,7 +46,7 @@
     width: 60%;
     text-align: center;
     padding: 1em 0 2em 0;
-    color: white;
+    color: rgb(0, 0, 0);
     font-size: 1.3em;
 }
 
@@ -50,6 +55,8 @@
     padding-top: 2em;
     color: white;
     font-size: 2em;
+    color: purple;
+
 }
 
 .hero_Share img {

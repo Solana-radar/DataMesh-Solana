@@ -35,13 +35,13 @@ export default function Blinks() {
       <div className="flex  w-full justify-center ">
         <div className="flex gap-8">
           <Popover>
-            <PopoverButton className="block text-sm/6 font-semibold focus:outline-none data-[active]:text-white data-[hover]:text-white data-[focus]:outline-1 data-[focus]:outline-white">
+            <PopoverButton className="block text-sm/6 font-semibold focus:outline-none data-[active]:text-black data-[hover]:text-black data-[focus]:outline-1 data-[focus]:outline-black">
               <ShareIcon />
             </PopoverButton>
             <PopoverPanel
               transition
               anchor="bottom"
-              className="divide-y divide-white/5 rounded-xl bg-white/5 text-sm/6 transition duration-200 ease-in-out [--anchor-gap:var(--spacing-5)] data-[closed]:-translate-y-1 data-[closed]:opacity-0"
+              className="divide-y divide-black/5 rounded-xl bg-black/5 text-sm/6 transition duration-200 ease-in-out [--anchor-gap:var(--spacing-5)] data-[closed]:-translate-y-1 data-[closed]:opacity-0"
             >
               <div
                 className={`p-3 ${styles.share_btn} `}
