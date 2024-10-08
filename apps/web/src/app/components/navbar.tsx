@@ -7,6 +7,7 @@ import WalletButtonWrapper from "./wallet/WalletButtonWrapper";
 import { useEffect } from "react";
 import styles from "./navbar.module.css";
 import Blinks from "./blinks";
+import logo from "../../../public/images/Designer1.png";
 
 export default function Navbar() {
   const navigation = ["Share and Earn"];
@@ -31,14 +32,14 @@ export default function Navbar() {
   }, []);
 
   return (
-    <div className="w-full bg-black">
+    <div className={`w-full bg-white  ${styles.navStyles} `}>
       <nav className="container relative flex flex-wrap items-center justify-between p-8 mx-auto lg:justify-between xl:px-1">
         {/* Logo */}
         <Link href="/">
           <span className="flex items-center space-x-2 text-2xl font-medium text-indigo-500 dark:text-gray-100">
             <span>
               <Image
-                src="/images/designer1.png"
+                src={logo}
                 width="32"
                 height="32"
                 alt="N"
@@ -67,19 +68,19 @@ export default function Navbar() {
               <li className="mr-3 nav__item">
                 <Link
                   href="/"
-                  className="inline-block px-4 py-2 text-2xl font-normal text-gray-800 no-underline rounded-md dark:text-gray-200 hover:text-indigo-500 focus:text-indigo-500 focus:bg-indigo-100 focus:outline-none dark:focus:bg-gray-800"
+                  className="inline-block px-4 py-2 text-2xl font-normal text-gray-800 no-underline rounded-md dark:text-gray-200 hover:text-indigo-500 focus:text-indigo-500  focus:outline-none  "
                 >
                   Home{" "}
                 </Link>{" "}
                 <Link
                   href="#features"
-                  className="inline-block px-4 py-2 text-2xl font-normal text-gray-800 no-underline rounded-md dark:text-gray-200 hover:text-indigo-500 focus:text-indigo-500 focus:bg-indigo-100 focus:outline-none dark:focus:bg-gray-800"
+                  className="inline-block px-4 py-2 text-2xl font-normal text-gray-800 no-underline rounded-md dark:text-gray-200 hover:text-indigo-500 focus:text-indigo-500  focus:outline-none "
                 >
                   Features{" "}
                 </Link>{" "}
                 <Link
                   href="/share"
-                  className="inline-block px-4 py-2 text-2xl font-normal text-gray-800 no-underline rounded-md dark:text-gray-200 hover:text-indigo-500 focus:text-indigo-500 focus:bg-indigo-100 focus:outline-none dark:focus:bg-gray-800"
+                  className="inline-block px-4 py-2 text-2xl font-normal text-gray-800 no-underline rounded-md dark:text-gray-200 hover:text-indigo-500 focus:text-indigo-500  focus:outline-none "
                 >
                   Share and Earn{" "}
                 </Link>
@@ -93,7 +94,7 @@ export default function Navbar() {
             <>
               <Disclosure.Button
                 aria-label="Toggle Menu"
-                className="px-2 py-1 mx-1 text-gray-500 rounded-md lg:hidden hover:text-indigo-500 focus:text-indigo-500 focus:bg-indigo-100 focus:outline-none dark:text-gray-300 dark:focus:bg-trueGray-700"
+                className="px-2 py-1 mx-1 text-gray-500 rounded-md lg:hidden hover:text-indigo-500 focus:text-indigo-500  focus:outline-none dark:text-gray-300 dark:focus:bg-trueGray-700"
               >
                 <svg
                   className="w-6 h-6 fill-current"
@@ -119,19 +120,19 @@ export default function Navbar() {
                 <>
                   <Link
                     href="/"
-                    className="inline-block px-4 py-2 text-2xl font-normal text-gray-800 no-underline rounded-md dark:text-gray-200 hover:text-indigo-500 focus:text-indigo-500 focus:bg-indigo-100 focus:outline-none dark:focus:bg-gray-800"
+                    className="inline-block px-4 py-2 text-2xl font-normal text-gray-800 no-underline rounded-md dark:text-gray-200 hover:text-indigo-500 focus:text-indigo-500  focus:outline-none "
                   >
                     Home{" "}
                   </Link>{" "}
                   <Link
                     href="#features"
-                    className="inline-block px-4 py-2 text-2xl font-normal text-gray-800 no-underline rounded-md dark:text-gray-200 hover:text-indigo-500 focus:text-indigo-500 focus:bg-indigo-100 focus:outline-none dark:focus:bg-gray-800"
+                    className="inline-block px-4 py-2 text-2xl font-normal text-gray-800 no-underline rounded-md dark:text-gray-200 hover:text-indigo-500 focus:text-indigo-500  focus:outline-none "
                   >
                     Features{" "}
                   </Link>{" "}
                   <Link
                     href="/share"
-                    className="inline-block px-4 py-2 text-2xl font-normal text-gray-800 no-underline rounded-md dark:text-gray-200 hover:text-indigo-500 focus:text-indigo-500 focus:bg-indigo-100 focus:outline-none dark:focus:bg-gray-800"
+                    className="inline-block px-4 py-2 text-2xl font-normal text-gray-800 no-underline rounded-md dark:text-gray-200 hover:text-indigo-500 focus:text-indigo-500  focus:outline-none "
                   >
                     Share and Earn{" "}
                   </Link>
