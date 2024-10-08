@@ -6,7 +6,12 @@
 }
 
 .blinks svg {
-    width: 20px;
+    width: 30px;
+
+}
+
+.blinks svg:hover {
+    color: purple;
 
 }
 
@@ -22,4 +27,11 @@
 
 .share_btn svg {
     width: 30px;
+}
+
+@media screen and (max-width: 490px) {
+    .blinks svg {
+        width: 20px;
+
+    }
 }
