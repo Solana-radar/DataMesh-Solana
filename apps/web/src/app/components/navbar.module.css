@@ -16,10 +16,16 @@
 
 .shareToX {
     display: flex;
+    flex-direction: row;
+    align-items: center;
 }
 
 .shareToX p {
     padding-left: 1em;
+}
+
+.shareToX svg {
+    width: 400px;
 }
 
 .navStyles a {
