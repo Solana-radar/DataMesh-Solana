@@ -21,3 +21,18 @@
 .shareDiv form button {
     margin-top: 2em !important;
 }
+
+.shareDiv h1 {
+    text-transform: capitalize;
+}
+
+@media screen and (max-width: 400px) {
+
+    .shareDiv h1 {
+        font-size: 1.53em;
+    }
+
+    .shareDiv {
+        padding: 1em !important;
+    }
+}

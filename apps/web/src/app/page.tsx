@@ -1,5 +1,4 @@
 import Image from "next/image";
-import { NavbarDemo } from "./components/navbar";
 import Main from "./components/Hero";
 import Footer from "./components/Footer";
 function Gradient({

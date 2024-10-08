@@ -6,8 +6,9 @@ import { Disclosure } from "@headlessui/react";
 import WalletButtonWrapper from "./wallet/WalletButtonWrapper";
 import { useEffect } from "react";
 import styles from "./navbar.module.css";
+import Blinks from "./blinks";
 
-export const NavbarDemo = () => {
+export default function Navbar() {
   const navigation = ["Share and Earn"];
 
   // Effect to manage overflow behavior when wallet modal is open
@@ -48,9 +49,14 @@ export const NavbarDemo = () => {
           </span>
         </Link>
         {/* Get started and wallet button */}
-        <div className="gap-3 nav__item  lg:flex ml-auto lg:ml-0 lg:order-2">
+        <div
+          className={`gap-3 nav__item  lg:flex ml-auto lg:ml-0 lg:order-2  ${styles.nav_Button}  `}
+        >
           {/* <ThemeChanger /> */}
           <WalletButtonWrapper />
+          <div className={styles.Blinks}>
+            <Blinks />
+          </div>
         </div>{" "}
         <div
           className={`flex flex-wrap items-center justify-center p-8 lg:justify-end  ${styles.navLink} `}
@@ -87,7 +93,7 @@ export const NavbarDemo = () => {
             <>
               <Disclosure.Button
                 aria-label="Toggle Menu"
-                className="px-2 py-1 mx-4 text-gray-500 rounded-md lg:hidden hover:text-indigo-500 focus:text-indigo-500 focus:bg-indigo-100 focus:outline-none dark:text-gray-300 dark:focus:bg-trueGray-700"
+                className="px-2 py-1 mx-1 text-gray-500 rounded-md lg:hidden hover:text-indigo-500 focus:text-indigo-500 focus:bg-indigo-100 focus:outline-none dark:text-gray-300 dark:focus:bg-trueGray-700"
               >
                 <svg
                   className="w-6 h-6 fill-current"
@@ -133,7 +139,9 @@ export const NavbarDemo = () => {
                     href="/"
                     className="w-full px-6 py-2 mt-3 text-center text-white bg-indigo-600 rounded-md lg:ml-5"
                   >
-                    Connect wallet
+                    <div className={styles.shareToX}>
+                      <Blinks /> <p>Share to Twitter</p>
+                    </div>
                   </Link>
                 </>
               </Disclosure.Panel>
@@ -143,4 +151,4 @@ export const NavbarDemo = () => {
       </nav>
     </div>
   );
-};
+}

@@ -31,7 +31,7 @@ const ShareAndEarn = () => {
     <div className={`min-h-screen bg-black p-8   ${styles.shareDiv}`}>
       <section className="max-w-4xl mx-auto bg-gray-800 p-8 rounded-lg shadow-lg">
         <h1 className="text-3xl font-semibold text-center text-white mb-6">
-          Share to Earn for End Customers
+          Share to Earn <br /> for End Customers
         </h1>
 
         <form onSubmit={handleSubmit} className="space-y-6">

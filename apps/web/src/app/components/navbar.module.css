@@ -7,15 +7,32 @@
     margin: 0 1em;
 }
 
+.nav_Button {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.shareToX {
+    display: flex;
+}
+
+.shareToX p {
+    padding-left: 1em;
+}
+
 @media screen and (max-width: 1024px) {
 
-    .navLink {
+    .navLink,
+    .Blinks {
         display: none !important;
     }
+
 }
 
 
-@media screen and (max-width: 390px) {
+@media screen and (max-width: 490px) {
     .DataMesh {
         display: none;
     }

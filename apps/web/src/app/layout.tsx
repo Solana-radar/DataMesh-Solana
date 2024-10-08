@@ -13,10 +13,11 @@ import {
 } from "@solana/wallet-adapter-wallets";
 import { WalletModalProvider } from "@solana/wallet-adapter-react-ui";
 import { clusterApiUrl } from "@solana/web3.js";
-import { NavbarDemo } from "./components/navbar";
 import Footer from "./components/Footer";
+import Navbar from "./components/navbar";
 // Import wallet adapter CSS
 import "@solana/wallet-adapter-react-ui/styles.css";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   const network = WalletAdapterNetwork.Devnet;
@@ -34,7 +35,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
           <WalletProvider wallets={wallets} autoConnect>
             <WalletModalProvider>
               <header>
-                <NavbarDemo />
+                <Navbar />
               </header>
 
               {children}

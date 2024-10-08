@@ -9,44 +9,11 @@ import {
   DisclosureButton,
   DisclosurePanel,
 } from "@headlessui/react";
-import { ChevronDownIcon, XMarkIcon } from "@heroicons/react/20/solid";
+import { ChevronDownIcon } from "@heroicons/react/20/solid";
 
 const Main: React.FC = () => {
-  const generateBlinks = () => {
-    console.log("Blinks generated!");
-    const actionUrl = "https://data-mesh-solana-web.vercel.app/api/action"; // Local API endpoint
-    const encodedActionUrl = encodeURIComponent(`solana-action:${actionUrl}`);
-    const blinkUrl = `https://data-mesh-solana-web.vercel.app/api/action?data=${encodedActionUrl}`;
-
-    console.log("Share this Blink link:", blinkUrl);
-
-    // Copy the Blink URL to the clipboard
-    navigator.clipboard
-      .writeText(blinkUrl)
-      .then(() => {
-        // Show an alert when successfully copied
-        alert("Blink link copied to clipboard!");
-      })
-      .catch((err) => {
-        console.error("Failed to copy: ", err);
-        alert("Failed to copy the Blink link.");
-      });
-
-    return blinkUrl;
-  };
-
   return (
     <section className="text-gray-600 body-font">
-         <div className="flex justify-center mt-4">
-        {/* Add the new button */}
-        <button 
-          onClick={generateBlinks} 
-          className="bg-blue-500 text-white px-4 py-2 rounded flex items-center" // Added flex and items-center
-        >
-          Share to
-          <XMarkIcon className="h-5 w-5 mr-2" />
-        </button>
-      </div>
       <div className={`container pt-12 mx-auto flex ${styles.HeroDiv}`}>
         {/* Centered button div */}
         <div className={`${styles.HeroDiv_text}`}>
@@ -91,7 +58,7 @@ const Main: React.FC = () => {
         <h1 className="mx-auto text-xl text-center text-gray-300 font-normal leading-relaxed lg:w-2/3">
           Features of EcoBash.
         </h1>
-        <div className=" w-full pt-10 px-4">
+        <div className=" w-full pt-10 px-4 py-6 ">
           <div className="mx-auto w-full max-w-5xl divide-y divide-white/5 rounded-xl bg-white/5">
             <Disclosure as="div" className="p-6" defaultOpen={true}>
               <DisclosureButton className="group flex w-full items-center justify-between">

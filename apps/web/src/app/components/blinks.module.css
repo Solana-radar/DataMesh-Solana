@@ -1,0 +1,25 @@
+.blinks {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.blinks svg {
+    width: 20px;
+
+}
+
+.share_btn {
+    width: 230px;
+    display: flex !important;
+    background-color: rgba(50, 50, 50, 0.23) !important;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    padding: 1em 3em;
+}
+
+.share_btn svg {
+    width: 30px;
+}
