@@ -54,7 +54,7 @@ const ShareAndEarn = () => {
   }
 
   useEffect(() => {
-    console.log("rewards...", rewards)
+    console.log('rewards...', rewards)
     // Simulate rewards earning
     const earned = formData.invoiceData.trim().length / 1000
     setExtimatedRewards(rewards + earned)
