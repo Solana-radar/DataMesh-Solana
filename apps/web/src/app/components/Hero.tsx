@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 import Image from "next/image";
 import { InvoiceImg, shareImg } from "../images";
@@ -8,10 +10,12 @@ import {
   DisclosurePanel,
 } from "@headlessui/react";
 import { ChevronDownIcon } from "@heroicons/react/20/solid";
+
 const Main: React.FC = () => {
   return (
     <section className="text-gray-600 body-font">
-      <div className={`container pt-12 mx-auto  flex  ${styles.HeroDiv}  `}>
+      <div className={`container pt-12 mx-auto flex ${styles.HeroDiv}`}>
+        {/* Centered button div */}
         <div className={`${styles.HeroDiv_text}`}>
           <h1 className="text-6xl font-bold text-white mb-6">
             Now earn for your <br /> Invoice bills on solana
@@ -54,7 +58,7 @@ const Main: React.FC = () => {
         <h1 className="mx-auto text-xl text-center text-gray-300 font-normal leading-relaxed lg:w-2/3">
           Features of EcoBash.
         </h1>
-        <div className=" w-full pt-10 px-4">
+        <div className=" w-full pt-10 px-4 py-6 ">
           <div className="mx-auto w-full max-w-5xl divide-y divide-white/5 rounded-xl bg-white/5">
             <Disclosure as="div" className="p-6" defaultOpen={true}>
               <DisclosureButton className="group flex w-full items-center justify-between">
