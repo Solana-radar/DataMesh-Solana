@@ -119,12 +119,38 @@
       }
     },
     {
+      "name": "validateInvoiceData",
+      "accounts": [
+        {
+          "name": "node",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "admin",
+          "isMut": true,
+          "isSigner": true
+        }
+      ],
+      "args": [
+        {
+          "name": "hsnNumber",
+          "type": "string"
+        }
+      ]
+    },
+    {
       "name": "validateNode",
       "accounts": [
         {
           "name": "node",
-          "isMut": false,
+          "isMut": true,
           "isSigner": false
+        },
+        {
+          "name": "admin",
+          "isMut": true,
+          "isSigner": true
         }
       ],
       "args": [
@@ -392,6 +418,10 @@
           {
             "name": "isActive",
             "type": "bool"
+          },
+          {
+            "name": "totalRewards",
+            "type": "u64"
           }
         ]
       }
@@ -424,6 +454,10 @@
           {
             "name": "signature",
             "type": "string"
+          },
+          {
+            "name": "isVerified",
+            "type": "bool"
           }
         ]
       }
@@ -750,6 +784,10 @@
           {
             "name": "isActive",
             "type": "bool"
+          },
+          {
+            "name": "totalRewards",
+            "type": "u64"
           }
         ]
       }
@@ -782,6 +820,10 @@
           {
             "name": "signature",
             "type": "string"
+          },
+          {
+            "name": "isVerified",
+            "type": "bool"
           }
         ]
       }
@@ -876,6 +918,6 @@
     }
   ],
   "metadata": {
-    "address": "AH71wvrtpPnLzVYvB2SgLKA6KkNihrsffrKD6TbTCisU"
+    "address": "7Vyb9o2BWuQPR2gj2hVfqL9Qq6R9ACtEnrLZ4Dto5xDX"
   }
 }

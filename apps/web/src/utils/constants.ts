@@ -13,3 +13,8 @@ export const DATAMESH_PROGRAM_INTERFACE = JSON.parse(JSON.stringify(idl));
 // export const DATAMESH_PROGRAM_INTERFACE = JSON.parse(JSON.stringify({}));
 
 export const DATAMESH_NODE_PDA_CONST = "DATAMESH_NODE"
+
+export const ADMIN_ADDRESSES = [
+  'FH5uTSXBJF4ZdF6UPPB5hzatuftB7mcyv6zsBWGz488p',
+  'HfnUVwxtz83sF812JcVDACiJootAkuc2wyXvHiRpGTpi',
+]
