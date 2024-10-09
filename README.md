@@ -1,7 +1,3 @@
-Here’s a template for the documentation of **Datamesh** based on your GitHub project "DataMesh-Solana":
-
----
-
 # **DataMesh - Solana**
 
 **Datamesh** is a decentralized platform built on the Solana blockchain, enabling end customers to submit their invoices, earn rewards, and contribute to a more efficient and interconnected digital economy. The platform collects real-time trade data such as invoices and e-commerce transactions, facilitating the exchange of data for AI-powered insights.
@@ -10,10 +6,7 @@ Here’s a template for the documentation of **Datamesh** based on your GitHub p
 1. [Introduction](#introduction)
 2. [Features](#features)
 3. [Getting Started](#getting-started)
-4. [Smart Contracts](#smart-contracts)
-5. [Solana Integration](#solana-integration)
-6. [Contributing](#contributing)
-7. [License](#license)
+4. [License](#license)
 
 ---
 
@@ -65,37 +58,6 @@ To work with this project, ensure you have the following:
     anchor build
     anchor deploy
     ```
-
----
-
-## **Smart Contracts**
-
-The smart contracts manage the submission and reward system for invoices. Key functionalities include:
-- **Invoice Submission**: Customers can submit invoices securely on-chain.
-- **Reward Distribution**: After verification, customers earn rewards in Solana tokens.
-
----
-
-## **Solana Integration**
-
-### **Core Components**
-- **DataMesh Program**: Manages invoice submissions and reward distribution.
-- **Solana Wallet**: Integration for storing and managing earnings.
-- **AI Model Interface**: Interfaces with AI systems to enhance business models using the submitted data.
-
----
-
-## **Contributing**
-
-We welcome contributions to the **DataMesh** project! If you have ideas, suggestions, or improvements, feel free to open an issue or submit a pull request.
-
-### **Steps to Contribute**
-1. Fork the repository.
-2. Create a feature branch (`git checkout -b feature-branch`).
-3. Commit your changes (`git commit -m 'Add new feature'`).
-4. Push to the branch (`git push origin feature-branch`).
-5. Open a pull request.
-
 ---
 
 ## **License**
