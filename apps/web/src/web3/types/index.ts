@@ -8,13 +8,13 @@ export type EconomicDataEntry = {
   quantity: number
   timestamp: string
   signature: string
-  is_verified: boolean
+  isVerified: boolean
 }
 
 export type NodeAccount = {
   nodeId: string
   data: Array<EconomicDataEntry>
-  activeSince: BN
+  activeSince: Date
   isActive: boolean
   totalRewards: BN
 }

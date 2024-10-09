@@ -2,6 +2,7 @@ import { AnchorProvider, BN, Program } from '@coral-xyz/anchor'
 import { findProgramAddressSync } from '@project-serum/anchor/dist/cjs/utils/pubkey'
 import { AnchorWallet } from '@solana/wallet-adapter-react'
 import {
+  ComputeBudgetProgram,
   Connection,
   SystemProgram,
   TransactionInstruction,
@@ -49,25 +50,51 @@ export class Web3Service {
       [Buffer.from(DATAMESH_NODE_PDA_CONST), this.wallet.publicKey.toBuffer()],
       DATAMESH_PROGRAM_ID
     )
-    this.fetchNodeAccount()
 
-    const instruction = await this.program.methods
-      .submitEconomicData(
-        economicData.invoiceData,
-        economicData.hsnNumber,
-        new BN(Number(economicData.amount)),
-        Number(economicData.quantity),
-        new BN(new Date(economicData.timestamp).getTime()),
-        economicData.signature
-      )
-      .accounts({
-        node: nodePublicKey,
-        user: this.wallet.publicKey,
-        systemProgram: SystemProgram.programId,
+    const transactionInstructions: TransactionInstruction[] = []
+    // Step 1: Create the compute budget instruction
+    transactionInstructions.push(
+      ComputeBudgetProgram.setComputeUnitLimit({
+        units: 500_000, // Set to the desired compute units
       })
-      .instruction()
+    )
 
-    return this.createAndSendTransaction(instruction)
+    // adding initialize instruction if account is not yet initialized
+    await this.program.account.nodeAccount
+      .fetch(nodePublicKey)
+      .catch(async (error) => {
+        console.log(error)
+        transactionInstructions.push(
+          await this.program.methods
+            .initializeNode()
+            .accounts({
+              node: nodePublicKey,
+              user: this.wallet.publicKey,
+              systemProgram: SystemProgram.programId,
+            })
+            .instruction()
+        )
+      })
+
+    transactionInstructions.push(
+      await this.program.methods
+        .submitEconomicData(
+          economicData.invoiceData,
+          economicData.hsnNumber,
+          new BN(Number(economicData.amount)),
+          Number(economicData.quantity),
+          new BN(new Date(economicData.timestamp).getTime()),
+          economicData.signature
+        )
+        .accounts({
+          node: nodePublicKey,
+          user: this.wallet.publicKey,
+          systemProgram: SystemProgram.programId,
+        })
+        .instruction()
+    )
+
+    return this.createAndSendTransaction(transactionInstructions)
   }
 
   async fetchNodeAccount(): Promise<NodeAccount | undefined> {
@@ -84,7 +111,6 @@ export class Web3Service {
 
       const nodeAccount =
         await this.program.account.nodeAccount.fetch(nodePublicKey)
-      console.log(nodeAccount)
       return { ...nodeAccount, nodeId: nodeAccount.nodeId.toBase58() }
     } catch (error) {
       console.log(error)
@@ -97,9 +123,17 @@ export class Web3Service {
 
     try {
       const nodeAccounts = await this.program.account.nodeAccount.all()
-      return nodeAccounts.map(({ account }) => ({
+      console.log(nodeAccounts)
+      return nodeAccounts.map(({ publicKey, account }) => ({
         ...account,
-        nodeId: account.nodeId.toBase58(),
+        data: account.data.map(({ amount, totalRewards, ...rest }) => ({
+          ...rest,
+          amount: Number(amount),
+          totalRewards: Number(totalRewards),
+        })),
+        nodeId: publicKey.toBase58(),
+        totalRewards: Number(account.totalRewards),
+        activeSince: new Date(Number(account.activeSince)),
       }))
     } catch (error) {
       console.log(error)
@@ -123,10 +157,12 @@ export class Web3Service {
       })
       .instruction()
 
-    return this.createAndSendTransaction(instruction)
+    return this.createAndSendTransaction([instruction])
   }
 
-  private async createAndSendTransaction(instruction: TransactionInstruction) {
+  private async createAndSendTransaction(
+    instructions: TransactionInstruction[]
+  ) {
     // Fetch the latest blockhash (only once)
     const latestBlockhash = await this.connection.getLatestBlockhash()
     console.log('latestBlockhash: ', latestBlockhash)
@@ -135,7 +171,7 @@ export class Web3Service {
     const messageV0 = new TransactionMessage({
       payerKey: this.wallet.publicKey,
       recentBlockhash: latestBlockhash.blockhash,
-      instructions: [instruction], // Transaction instructions
+      instructions, // Transaction instructions
     }).compileToV0Message()
 
     // Create the versioned transaction
