@@ -1,58 +1,107 @@
-# Turborepo Tailwind CSS starter
+Here’s a template for the documentation of **Datamesh** based on your GitHub project "DataMesh-Solana":
 
-This is an official starter Turborepo.
+---
 
-## Using this example
+# **DataMesh - Solana**
 
-Run the following command:
+**Datamesh** is a decentralized platform built on the Solana blockchain, enabling end customers to submit their invoices, earn rewards, and contribute to a more efficient and interconnected digital economy. The platform collects real-time trade data such as invoices and e-commerce transactions, facilitating the exchange of data for AI-powered insights.
 
-```sh
-npx create-turbo@latest -e with-tailwind
-```
+## **Table of Contents**
+1. [Introduction](#introduction)
+2. [Features](#features)
+3. [Getting Started](#getting-started)
+4. [Smart Contracts](#smart-contracts)
+5. [Solana Integration](#solana-integration)
+6. [Contributing](#contributing)
+7. [License](#license)
 
-## What's inside?
+---
 
-This Turborepo includes the following packages/apps:
+## **Introduction**
+DataMesh leverages the Solana blockchain to build a decentralized economic data network. It allows end customers to submit invoices and earn rewards, while businesses benefit from AI models trained on decentralized real-time trade data. This decentralized approach offers increased transparency, security, and efficiency.
 
-### Apps and Packages
+---
 
-- `docs`: a [Next.js](https://nextjs.org/) app with [Tailwind CSS](https://tailwindcss.com/)
-- `web`: another [Next.js](https://nextjs.org/) app with [Tailwind CSS](https://tailwindcss.com/)
-- `ui`: a stub React component library with [Tailwind CSS](https://tailwindcss.com/) shared by both `web` and `docs` applications
-- `@repo/eslint-config`: `eslint` configurations (includes `eslint-config-next` and `eslint-config-prettier`)
-- `@repo/typescript-config`: `tsconfig.json`s used throughout the monorepo
+## **Features**
+- **Decentralized Data Network**: Facilitates the secure exchange of invoice data.
+- **Earnings for Customers**: End customers earn rewards for submitting their invoice data.
+- **AI-Powered Insights**: The platform helps businesses create more accurate AI models.
+- **High-Speed, Low-Cost Transactions**: Built on Solana, providing fast and cost-efficient blockchain solutions.
 
-Each package/app is 100% [TypeScript](https://www.typescriptlang.org/).
+---
 
-### Building packages/ui
+## **Getting Started**
 
-This example is set up to produce compiled styles for `ui` components into the `dist` directory. The component `.tsx` files are consumed by the Next.js apps directly using `transpilePackages` in `next.config.js`. This was chosen for several reasons:
+### **Prerequisites**
+To work with this project, ensure you have the following:
+- Node.js and npm installed.
+- Solana CLI installed.
+- Anchor framework (for smart contract development).
 
-- Make sharing one `tailwind.config.js` to apps and packages as easy as possible.
-- Make package compilation simple by only depending on the Next.js Compiler and `tailwindcss`.
-- Ensure Tailwind classes do not overwrite each other. The `ui` package uses a `ui-` prefix for it's classes.
-- Maintain clear package export boundaries.
+### **Installation**
 
-Another option is to consume `packages/ui` directly from source without building. If using this option, you will need to update the `tailwind.config.js` in your apps to be aware of your package locations, so it can find all usages of the `tailwindcss` class names for CSS compilation.
+1. Clone the repository:
+    ```bash
+    git clone https://github.com/Solana-radar/DataMesh-Solana.git
+    ```
 
-For example, in [tailwind.config.js](packages/tailwind-config/tailwind.config.js):
+2. Navigate into the project directory:
+    ```bash
+    cd DataMesh-Solana
+    ```
 
-```js
-  content: [
-    // app content
-    `src/**/*.{js,ts,jsx,tsx}`,
-    // include packages if not transpiling
-    "../../packages/ui/*.{js,ts,jsx,tsx}",
-  ],
-```
+3. Install dependencies:
+    ```bash
+    npm install
+    ```
 
-If you choose this strategy, you can remove the `tailwindcss` and `autoprefixer` dependencies from the `ui` package.
+4. Set up the Solana development environment:
+    ```bash
+    solana config set --url https://api.devnet.solana.com
+    ```
 
-### Utilities
+5. Build and deploy the program using Anchor:
+    ```bash
+    anchor build
+    anchor deploy
+    ```
 
-This Turborepo has some additional tools already setup for you:
+---
 
-- [Tailwind CSS](https://tailwindcss.com/) for styles
-- [TypeScript](https://www.typescriptlang.org/) for static type checking
-- [ESLint](https://eslint.org/) for code linting
-- [Prettier](https://prettier.io) for code formatting
+## **Smart Contracts**
+
+The smart contracts manage the submission and reward system for invoices. Key functionalities include:
+- **Invoice Submission**: Customers can submit invoices securely on-chain.
+- **Reward Distribution**: After verification, customers earn rewards in Solana tokens.
+
+---
+
+## **Solana Integration**
+
+### **Core Components**
+- **DataMesh Program**: Manages invoice submissions and reward distribution.
+- **Solana Wallet**: Integration for storing and managing earnings.
+- **AI Model Interface**: Interfaces with AI systems to enhance business models using the submitted data.
+
+---
+
+## **Contributing**
+
+We welcome contributions to the **DataMesh** project! If you have ideas, suggestions, or improvements, feel free to open an issue or submit a pull request.
+
+### **Steps to Contribute**
+1. Fork the repository.
+2. Create a feature branch (`git checkout -b feature-branch`).
+3. Commit your changes (`git commit -m 'Add new feature'`).
+4. Push to the branch (`git push origin feature-branch`).
+5. Open a pull request.
+
+---
+
+## **License**
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+---
+
+You can expand on each section based on more technical details as you progress with the project!
