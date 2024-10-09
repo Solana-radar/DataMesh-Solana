@@ -1,6 +1,5 @@
 import Image from "next/image";
 import Main from "./components/Hero";
-import Footer from "./components/Footer";
 function Gradient({
   conic,
   className,
