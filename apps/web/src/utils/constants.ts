@@ -7,7 +7,7 @@ export const ENDPOINT =
   process.env.NEXT_PUBLIC_SOLANA_RPC_URL || clusterApiUrl("devnet");
 
 /* Constants for the Deployed "Hello World" Program */
-export const DATAMESH_PROGRAM_ID = new PublicKey(idl.metadata.address);
+export const DATAMESH_PROGRAM_ID = new PublicKey(process.env.PROGRAM_ID || idl.metadata.address);
 // export const DATAMESH_PROGRAM_ID = new PublicKey("D8tQBi2nELbNkAzkZz5FQBN28tAQFNpWL73HakbC4qCT");
 export const DATAMESH_PROGRAM_INTERFACE = JSON.parse(JSON.stringify(idl));
 // export const DATAMESH_PROGRAM_INTERFACE = JSON.parse(JSON.stringify({}));
