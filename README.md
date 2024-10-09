@@ -63,7 +63,3 @@ To work with this project, ensure you have the following:
 ## **License**
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
----
-
-You can expand on each section based on more technical details as you progress with the project!
